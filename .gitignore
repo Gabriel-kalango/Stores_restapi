@@ -1,0 +1,5 @@
+__pycache__
+.kally
+.instance
+.*pyc
+DS_Store
