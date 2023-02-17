@@ -1,6 +1,7 @@
 __pycache__
-kally
-.instance
+kally/
+instance/
+dat.db
 .*pyc
 DS_Store
-.migrations
+.migrations/
