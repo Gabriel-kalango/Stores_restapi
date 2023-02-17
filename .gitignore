@@ -1,5 +1,6 @@
 __pycache__
-.kally
+.flask
 .instance
+dat.db
 .*pyc
 DS_Store
