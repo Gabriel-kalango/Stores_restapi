@@ -1,7 +1,21 @@
 from marshmallow import Schema,fields
+from werkzeug.datastructures import FileStorage
+
+class FileStorageField(fields.Field):
+    default_error_messages={"invalid":"not a valid image"}
+    def _deserialize(self, value, attr, data ):
+        if value is None:
+            return None
+        elif not isinstance(value,FileStorage):
+            self.fail("invalid")
+        return value
+
+class ImageSchema(Schema):
+    image=FileStorageField(required=True)
 class plainItemschema(Schema):
     id=fields.Int(dump_only=True)
     name=fields.Str(required=True)
+    description=fields.Str(required=True)
     price=fields.Float(required=True)
     
 class updateitemschema(Schema):
@@ -37,3 +51,5 @@ class userschema(Schema):
     username=fields.Str(required=True)
     password=fields.Str(required=True,load_only=True)
     
+class userRegisterschema(userschema):
+    email=fields.Str(required=True)

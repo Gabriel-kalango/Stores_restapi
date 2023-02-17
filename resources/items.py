@@ -14,7 +14,7 @@ class item(MethodView):
     def get(self,item_id):
         item=ItemModel.query.get_or_404(item_id)
         return item
-    @jwt_required()
+    @jwt_required(fresh=True)
     def delete(self,item_id):
         jwt=get_jwt()
         if not jwt.get("is_admin"):
@@ -47,7 +47,7 @@ class itemList(MethodView):
     @blb.response(200,Itemschema(many=True))
     def get(self):
         return ItemModel.query.all()
-    @jwt_required()
+    
     @blb.arguments(Itemschema)
     @blb.response(201,Itemschema)
     def post(self,itemdata):
